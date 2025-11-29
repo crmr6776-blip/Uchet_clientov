@@ -1,523 +1,534 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <title>MiniCRM Mobile — учёт клиентов и заказов</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="MiniCRM Mobile — простое и удобное приложение для учёта клиентов и заказов на Android.">
-  <style>
-    :root {
-      --bg: #050607;
-      --card: #11161c;
-      --accent: #00e5ff;
-      --accent-soft: rgba(0,229,255,0.14);
-      --text: #e8edf2;
-      --muted: #8c98a4;
-      --danger: #ff5252;
-      --radius-lg: 18px;
-      --radius-md: 12px;
-      --shadow-soft: 0 18px 45px rgba(0,0,0,0.65);
-    }
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text", Roboto, sans-serif;
-      background: radial-gradient(circle at top, #101524 0, #050607 45%, #020308 100%);
-      color: var(--text);
-      -webkit-font-smoothing: antialiased;
-    }
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    <meta charset="UTF-8">
+    <title>MiniCRM Mobile — учёт клиентов и заказов с телефона</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="MiniCRM Mobile — простая CRM для мастеров, сервисных центров, частных специалистов и небольших компаний. Учёт клиентов, заказов, долгов и оплат прямо с телефона.">
+    <style>
+        :root {
+            --bg: #05070b;
+            --card: #12141b;
+            --accent: #00e5ff;
+            --accent-soft: #00bfa5;
+            --text: #e0e0e0;
+            --muted: #90a4ae;
+            --danger: #ff5252;
+            --radius: 14px;
+        }
 
-    .page {
-      max-width: 1080px;
-      margin: 0 auto;
-      padding: 18px 16px 40px;
-    }
+        * { box-sizing: border-box; }
 
-    .hero {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr);
-      gap: 22px;
-      align-items: center;
-      margin-bottom: 26px;
-    }
-    @media (max-width: 820px) {
-      .hero {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
+        body {
+            margin: 0;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: radial-gradient(circle at top, #182848 0, #05070b 45%, #000000 100%);
+            color: var(--text);
+        }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.45);
-      border: 1px solid rgba(0,229,255,0.28);
-      font-size: 11px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-bottom: 10px;
-    }
-    .pill-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: #00e676;
-      margin-right: 6px;
-      box-shadow: 0 0 0 4px rgba(0,230,118,0.18);
-    }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
 
-    h1 {
-      font-size: clamp(26px, 3vw, 30px);
-      margin: 0 0 8px;
-    }
-    .subtitle {
-      font-size: 14px;
-      color: var(--muted);
-      max-width: 460px;
-      line-height: 1.5;
-    }
+        .wrap {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 20px 16px 48px;
+        }
 
-    .hero-highlights {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin: 16px 0 20px;
-      font-size: 12px;
-    }
-    .hero-tag {
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: rgba(17,22,28,0.9);
-      border: 1px solid rgba(120,144,156,0.6);
-      color: #cfd8dc;
-    }
+        header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
 
-    .cta-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      align-items: center;
-      margin-bottom: 12px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px 18px;
-      border-radius: 999px;
-      font-size: 13px;
-      border: none;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: transform .12s ease, box-shadow .12s ease, background .12s ease;
-    }
-    .btn-primary {
-      background: linear-gradient(135deg, #00e5ff, #00bfa5);
-      color: #000;
-      box-shadow: 0 0 0 1px rgba(0,0,0,0.7), 0 14px 35px rgba(0,229,255,0.35);
-    }
-    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 16px 40px rgba(0,229,255,0.45); }
-    .btn-ghost {
-      background: rgba(6,10,14,0.8);
-      color: var(--text);
-      border: 1px solid rgba(129,199,255,0.4);
-    }
-    .btn-ghost:hover { background: rgba(12,18,24,0.9); }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-    .hint-line {
-      font-size: 11px;
-      color: var(--muted);
-    }
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            background: radial-gradient(circle at 30% 30%, #76ff03 0, #00c853 35%, #1b5e20 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 18px;
+            color: #000;
+        }
 
-    .screen-card {
-      position: relative;
-      background: radial-gradient(circle at top left, #1f2933 0, #0b1016 45%, #050608 100%);
-      border-radius: 24px;
-      padding: 12px 12px 16px;
-      box-shadow: var(--shadow-soft);
-      border: 1px solid rgba(255,255,255,0.06);
-      overflow: hidden;
-    }
-    .screen-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 10px;
-      font-size: 11px;
-      color: var(--muted);
-    }
-    .screen-dots {
-      display: flex;
-      gap: 4px;
-    }
-    .screen-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 999px;
-      background: rgba(144,164,174,0.7);
-    }
-    .screen-dot:nth-child(1) { background: #ff5252; }
-    .screen-dot:nth-child(2) { background: #ffca28; }
-    .screen-dot:nth-child(3) { background: #66bb6a; }
+        .logo-text-main {
+            font-weight: 650;
+            font-size: 18px;
+        }
 
-    .screens-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 8px;
-    }
-    .phone-shell {
-      position: relative;
-      background: radial-gradient(circle at top, #141a26 0, #050609 70%);
-      border-radius: 18px;
-      padding: 10px 6px 10px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.65);
-      border: 1px solid rgba(255,255,255,0.06);
-    }
-    .phone-notch {
-      position: absolute;
-      top: 4px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 40%;
-      height: 6px;
-      border-radius: 999px;
-      background: rgba(0,0,0,0.7);
-    }
-    .phone-screen {
-      border-radius: 12px;
-      overflow: hidden;
-      background: #000;
-      height: 210px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 10px;
-      color: #cfd8dc;
-      padding: 6px;
-      text-align: left;
-      line-height: 1.4;
-    }
-    .pill-label {
-      display: inline-flex;
-      padding: 2px 6px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,229,255,0.55);
-      font-size: 9px;
-      margin-bottom: 4px;
-      color: #80deea;
-    }
+        .logo-text-sub {
+            font-size: 12px;
+            color: var(--muted);
+        }
 
-    .section {
-      margin-top: 30px;
-      padding: 18px 16px;
-      background: rgba(5,8,12,0.86);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(255,255,255,0.05);
-      box-shadow: var(--shadow-soft);
-    }
-    .section h2 {
-      margin: 0 0 10px;
-      font-size: 18px;
-    }
-    .section-sub {
-      font-size: 13px;
-      color: var(--muted);
-      margin-bottom: 14px;
-    }
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 3fr) minmax(0, 2.2fr);
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 32px;
+        }
 
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 14px;
-      font-size: 13px;
-    }
-    @media (max-width: 900px) {
-      .features-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-    @media (max-width: 620px) {
-      .features-grid { grid-template-columns: minmax(0,1fr); }
-    }
-    .feature-card {
-      background: radial-gradient(circle at top left, rgba(0,229,255,0.07), rgba(3,6,10,0.98));
-      border-radius: var(--radius-md);
-      padding: 10px 11px;
-      border: 1px solid rgba(144,164,174,0.45);
-    }
-    .feature-title {
-      font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 4px;
-    }
-    .badge {
-      display: inline-flex;
-      align-items: center;
-      font-size: 11px;
-      padding: 2px 7px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,229,255,0.4);
-      color: #b2ebf2;
-      margin-right: 4px;
-      margin-bottom: 4px;
-    }
+        @media (max-width: 880px) {
+            .hero {
+                grid-template-columns: 1fr;
+            }
+        }
 
-    .target-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0,1fr));
-      gap: 10px;
-      font-size: 13px;
-    }
-    @media (max-width: 900px) {
-      .target-grid { grid-template-columns: repeat(2, minmax(0,1fr)); }
-    }
-    @media (max-width: 620px) {
-      .target-grid { grid-template-columns: minmax(0,1fr); }
-    }
-    .target-card {
-      background: rgba(10,14,20,0.96);
-      border-radius: var(--radius-md);
-      padding: 9px 10px;
-      border: 1px solid rgba(96,125,139,0.7);
-    }
-    .target-title {
-      font-weight: 600;
-      margin-bottom: 3px;
-      font-size: 13px;
-    }
+        .hero-card {
+            background: rgba(1, 6, 16, 0.86);
+            border-radius: 24px;
+            padding: 22px 20px 20px;
+            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.85);
+            border: 1px solid rgba(144, 202, 249, 0.15);
+        }
 
-    .footer {
-      margin: 26px 0 6px;
-      font-size: 11px;
-      color: var(--muted);
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-      border-top: 1px solid rgba(255,255,255,0.05);
-      padding-top: 10px;
-    }
-    .footer a { color: var(--muted); }
-  </style>
+        .hero-title {
+            font-size: 26px;
+            font-weight: 720;
+            margin: 0 0 8px;
+        }
+
+        .hero-sub {
+            font-size: 14px;
+            color: var(--muted);
+            margin-bottom: 16px;
+        }
+
+        .hero-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .badge {
+            font-size: 11px;
+            padding: 4px 9px;
+            border-radius: 999px;
+            border: 1px solid rgba(0, 229, 255, 0.35);
+            color: var(--accent);
+            background: rgba(0, 0, 0, 0.35);
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 18px;
+            border-radius: 999px;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.08s ease;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #00e5ff, #00c853);
+            color: #000;
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 12px 34px rgba(0, 229, 255, 0.45);
+        }
+
+        .btn-ghost {
+            background: transparent;
+            border: 1px solid rgba(144, 164, 174, 0.7);
+            color: var(--text);
+            padding-inline: 14px;
+        }
+
+        .btn-ghost:hover {
+            background: rgba(15, 23, 42, 0.85);
+        }
+
+        .hero-note {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 8px;
+        }
+
+        .hero-phone {
+            background: radial-gradient(circle at 0 0, #00e5ff 0, transparent 45%),
+                        radial-gradient(circle at 100% 100%, #00c853 0, transparent 45%),
+                        #02030a;
+            border-radius: 34px;
+            padding: 10px;
+            width: 260px;
+            justify-self: center;
+            box-shadow: 0 18px 60px rgba(0, 0, 0, 0.9);
+        }
+
+        .phone-inner {
+            border-radius: 26px;
+            overflow: hidden;
+            background: #000;
+            border: 1px solid rgba(144, 202, 249, 0.2);
+        }
+
+        .phone-inner img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 650;
+            margin: 0 0 12px;
+        }
+
+        .section-sub {
+            font-size: 13px;
+            color: var(--muted);
+            margin-bottom: 18px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        @media (max-width: 960px) {
+            .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 640px) {
+            .grid-3 { grid-template-columns: 1fr; }
+        }
+
+        .card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 14px 14px 12px;
+            border: 1px solid rgba(120, 144, 156, 0.45);
+        }
+
+        .card h3 {
+            margin: 0 0 6px;
+            font-size: 15px;
+        }
+
+        .card p {
+            margin: 0;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .tag {
+            font-size: 11px;
+            padding: 3px 7px;
+            border-radius: 999px;
+            background: rgba(38, 50, 56, 0.9);
+            color: var(--muted);
+        }
+
+        .screens {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        @media (max-width: 960px) {
+            .screens { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 560px) {
+            .screens { grid-template-columns: repeat(1, minmax(0, 1fr)); }
+        }
+
+        .screen-card {
+            background: rgba(4, 9, 16, 0.9);
+            border-radius: 18px;
+            padding: 8px 8px 10px;
+            border: 1px solid rgba(96, 125, 139, 0.6);
+        }
+
+        .screen-card img {
+            width: 100%;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .screen-title {
+            font-size: 12px;
+            margin-top: 6px;
+            color: var(--muted);
+        }
+
+        .install-steps {
+            display: grid;
+            grid-template-columns: minmax(0, 3.5fr) minmax(0, 2fr);
+            gap: 18px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 840px) {
+            .install-steps { grid-template-columns: 1fr; }
+        }
+
+        ol {
+            margin: 0;
+            padding-left: 18px;
+            font-size: 13px;
+            color: var(--muted);
+        }
+
+        li + li { margin-top: 4px; }
+
+        .note-box {
+            font-size: 12px;
+            color: var(--muted);
+            border-radius: 12px;
+            padding: 8px 10px;
+            background: rgba(11, 15, 24, 0.96);
+            border: 1px dashed rgba(144, 164, 174, 0.7);
+        }
+
+        footer {
+            font-size: 11px;
+            color: var(--muted);
+            margin-top: 32px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(55, 71, 79, 0.8);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="page">
-    <header class="hero">
-      <div>
-        <div class="pill">
-          <span class="pill-dot"></span>
-          Локальная CRM для мастеров и малого бизнеса
-        </div>
-        <h1>MiniCRM Mobile — учёт клиентов и заказов на Android</h1>
-        <p class="subtitle">
-          Приложение для тех, кто работает руками и ценит порядок в цифрах:
-          мастера по ремонту, частные специалисты, небольшие сервисы и выездные бригады.
-          Все заказы и долги под рукой, прямо в телефоне.
-        </p>
+<div class="wrap">
 
-        <div class="hero-highlights">
-          <span class="hero-tag">Хранение данных только на вашем устройстве</span>
-          <span class="hero-tag">Работа, материалы, наценка, долг — считает автоматически</span>
-          <span class="hero-tag">Голосовые и медиа‑заметки по каждому заказу</span>
-        </div>
-
-        <div class="cta-row">
-          <a href="files/MiniCRMv2.apk" class="btn btn-primary">
-            Скачать APK
-          </a>
-          <a href="https://t.me/UgraRemKomp" class="btn btn-ghost" target="_blank" rel="noopener">
-            Задать вопрос по установке
-          </a>
-        </div>
-        <div class="hint-line">
-          Откройте файл <b>MiniCRMv2.apk</b> на телефоне Android и подтвердите установку из неизвестных источников.
-        </div>
-      </div>
-
-      <div class="screen-card">
-        <div class="screen-header">
-          <div class="screen-dots">
-            <span class="screen-dot"></span>
-            <span class="screen-dot"></span>
-            <span class="screen-dot"></span>
-          </div>
-          <span>Скриншоты приложения</span>
-        </div>
-        <div class="screens-grid">
-          <div class="phone-shell">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div>
-                <div class="pill-label">Актуальные заказы</div>
-                <strong>Главный экран</strong><br>
-                — быстрый поиск по имени, телефону и заметкам<br>
-                — суммы по работе, материалам и наценке<br>
-                — цветовые подсказки по долгам<br>
-                — статусы: в работе / с долгом / завершён
-              </div>
+    <!-- HEADER -->
+    <header>
+        <div class="logo">
+            <div class="logo-icon">СЦ</div>
+            <div>
+                <div class="logo-text-main">MiniCRM Mobile</div>
+                <div class="logo-text-sub">Учёт клиентов и заказов с телефона</div>
             </div>
-          </div>
-          <div class="phone-shell">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div>
-                <div class="pill-label">Карточка клиента</div>
-                <strong>Подробный заказ</strong><br>
-                — имя, телефон<br>
-                — работа, материалы, наценка, оплата<br>
-                — заметка по ремонту<br>
-                — рейтинг клиента<br>
-                — запись голоса + фото/видео
-              </div>
-            </div>
-          </div>
-          <div class="phone-shell">
-            <div class="phone-notch"></div>
-            <div class="phone-screen">
-              <div>
-                <div class="pill-label">Admin / Service</div>
-                <strong>Служебный раздел</strong><br>
-                — пробный период и лицензия<br>
-                — выгрузка в Excel / Sheets (CSV)<br>
-                — итоги по месяцам и годам<br>
-                — Device ID для привязки лицензии
-              </div>
-            </div>
-          </div>
         </div>
-      </div>
+        <div style="font-size:12px;color:var(--muted);text-align:right;">
+            Разработчик: УграРемКомп<br>
+            Android 7.0+ (minSdk 24)
+        </div>
     </header>
 
-    <section class="section">
-      <h2>Что умеет MiniCRM Mobile</h2>
-      <p class="section-sub">
-        Приложение специально сделано максимально простым. Без лишних кнопок и сложных меню —
-        только то, что действительно нужно в работе.
-      </p>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-card">
+            <h1 class="hero-title">Мини-CRM для мастеров и небольших команд</h1>
+            <p class="hero-sub">
+                Ведите клиентов, заказы, суммы и долги прямо с телефона.
+                Без облачных подписок и сложных CRM — всё локально и под контролем.
+            </p>
 
-      <div class="features-grid">
-        <div class="feature-card">
-          <div class="feature-title">Карточка клиента и заказа</div>
-          <p>
-            Имя, телефон, стоимость работы, материалов и наценки, оплата и итоговый долг.
-            Отдельное поле для заметки по ремонту.
-          </p>
+            <div class="hero-badges">
+                <span class="badge">Учёт клиентов и заказов</span>
+                <span class="badge">Долги и оплаты</span>
+                <span class="badge">Голосовые и медиа-заметки</span>
+                <span class="badge">Экспорт в Excel / Sheets</span>
+            </div>
+
+            <div class="hero-actions">
+                <!-- ССЫЛКА НА APK: файл нужно положить в /files/MiniCRMv2.apk -->
+                <a class="btn btn-primary" href="files/MiniCRMv2.apk">
+                    Скачать APK (Android)
+                </a>
+                <a class="btn btn-ghost" href="https://github.com/crmr6776-blip/Uchet_clientov" target="_blank">
+                    Код на GitHub
+                </a>
+            </div>
+            <div class="hero-note">
+                Установка из APK. Возможно предупреждение Play Защиты — приложение без вирусов, работает только локально.
+            </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-title">Статусы и списки</div>
-          <p>
-            Актуальные, должники, в работе, завершённые — удобно переключаться свайпами
-            или через нижнюю навигацию.
-          </p>
+
+        <!-- Превью телефона: сюда подставь скрин -->
+        <div class="hero-phone">
+            <div class="phone-inner">
+                <!-- ЗАМЕНИ имя файла на реальный скрин -->
+                <img src="img/screen-orders.jpg" alt="Список заказов в MiniCRM Mobile">
+            </div>
         </div>
-        <div class="feature-card">
-          <div class="feature-title">Медиа‑заметки</div>
-          <p>
-            Запись голосовых комментариев прямо из карточки, быстрые фото и видео по заказу,
-            открытие медиа‑папки одним нажатием.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-title">Финансовый учёт</div>
-          <p>
-            Автоматический расчёт итога, оплаты и долга. Отдельный список «Должники»,
-            чтобы никто не потерялся.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-title">Экспорт в Excel / Sheets</div>
-          <p>
-            Выгрузка отчётов по месяцам в формате CSV — можно открыть в Excel, Google Таблицах
-            или отправить бухгалтеру в один клик.
-          </p>
-        </div>
-        <div class="feature-card">
-          <div class="feature-title">Локальное хранение данных</div>
-          <p>
-            Все заказы, суммы и лицензия хранятся на вашем телефоне. Никаких облаков,
-            подписок и ежемесячных платежей.
-          </p>
-        </div>
-      </div>
     </section>
 
-    <section class="section">
-      <h2>Кому подходит приложение</h2>
-      <p class="section-sub">
-        MiniCRM Mobile можно использовать не только мастерам по ремонту техники.
-        Всё, что нужно — это работа с клиентами и заказами.
-      </p>
-
-      <div class="target-grid">
-        <div class="target-card">
-          <div class="target-title">Сервисные центры и мастера по ремонту</div>
-          <p>
-            Смартфоны, ноутбуки, бытовая техника, авто‑электрика, шиномонтаж —
-            любой ремонт, где важно не забыть клиента и сумму.
-          </p>
+    <!-- ДЛЯ КОГО -->
+    <section style="margin-bottom:28px;">
+        <h2 class="section-title">Кому подходит MiniCRM Mobile</h2>
+        <p class="section-sub">
+            Приложение универсальное — помогает не только мастерам по электронике.
+            Любой специалист, который ведёт клиентов и деньги, может использовать MiniCRM Mobile как «карманный журнал заказов».
+        </p>
+        <div class="grid-3">
+            <div class="card">
+                <h3>Мастера и сервисные центры</h3>
+                <p>Ремонт смартфонов, ноутбуков, техники, установка дверей, сантехника, авто-сервис и др.</p>
+                <div class="tags">
+                    <span class="tag">серийные заказы</span>
+                    <span class="tag">диагностика и ремонт</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Частные специалисты</h3>
+                <p>Репетиторы, фотографы, видеографы, стилисты, бьюти-мастера, частные врачи, психологи.</p>
+                <div class="tags">
+                    <span class="tag">записи клиентов</span>
+                    <span class="tag">оплаты по встречам</span>
+                </div>
+            </div>
+            <div class="card">
+                <h3>Небольшие компании</h3>
+                <p>Маленькие студии, ИП и команды, которым нужна простая CRM без лишнего «комбайна» и абонплаты.</p>
+                <div class="tags">
+                    <span class="tag">обращения и заказы</span>
+                    <span class="tag">отчёты для владельца</span>
+                </div>
+            </div>
         </div>
-        <div class="target-card">
-          <div class="target-title">Выездные мастера</div>
-          <p>
-            Установка/ремонт кондиционеров, сантехника, электрика, замерщики окон,
-            мастера по мебели и сборке.
-          </p>
-        </div>
-        <div class="target-card">
-          <div class="target-title">Небольшие бригады и ИП</div>
-          <p>
-            Строители, отделочники, клининг, услуги по дому —
-            удобно вести список заказов и видеть оборот по месяцам.
-          </p>
-        </div>
-        <div class="target-card">
-          <div class="target-title">Ремонт обуви, часов, ключей</div>
-          <p>
-            Мастерские с большим потоком мелких заказов: быстро создать карточку,
-            оставить пометку и выдать готовый заказ.
-          </p>
-        </div>
-        <div class="target-card">
-          <div class="target-title">Услуги красоты</div>
-          <p>
-            Небольшие салоны, мастера маникюра, бровисты, барберы —
-            учёт клиентов, чеков и долгов без сложных CRM.
-          </p>
-        </div>
-        <div class="target-card">
-          <div class="target-title">Любой малый бизнес с клиентами</div>
-          <p>
-            Если вы регулярно делаете услуги и хотите видеть,
-            кто сколько должен и какой был оборот — MiniCRM Mobile вам подойдёт.
-          </p>
-        </div>
-      </div>
     </section>
 
-    <section class="section">
-      <h2>Как начать пользоваться</h2>
-      <p class="section-sub">
-        1. Скачайте APK‑файл на телефон Android.<br>
-        2. Разрешите установку приложений из неизвестных источников (один раз).<br>
-        3. Установите MiniCRM Mobile и создайте первый заказ.<br>
-        4. В разделе <b>Admin</b> вы увидите срок пробного периода и Device ID для покупки лицензии.
-      </p>
-      <div class="cta-row">
-        <a href="files/MiniCRMv2.apk" class="btn btn-primary">
-          Скачать APK для Android
-        </a>
-        <a href="https://t.me/UgraRemKomp" class="btn btn-ghost" target="_blank" rel="noopener">
-          Задать вопрос разработчику
-        </a>
-      </div>
+    <!-- ФУНКЦИИ -->
+    <section style="margin-bottom:28px;">
+        <h2 class="section-title">Что умеет MiniCRM Mobile</h2>
+        <p class="section-sub">
+            Всё, что нужно мастеру или специалисту, чтобы не потерять клиента и деньги.
+        </p>
+
+        <div class="grid-3" style="margin-bottom:16px;">
+            <div class="card">
+                <h3>Карточка клиента и заказа</h3>
+                <p>
+                    Имя, телефон, работы, материалы, наценка, оплачено, долг, заметка и рейтинг клиента (1–5 звёзд).
+                </p>
+            </div>
+            <div class="card">
+                <h3>Статусы и вкладки</h3>
+                <p>
+                    Актуальные, должники, в работе, завершённые. Быстро видно, что с заказом и где деньги.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Медиа-заметки</h3>
+                <p>
+                    Запись голоса, фото и видео прямо из карточки клиента. Все файлы привязаны к конкретному заказу.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Экспорт в Excel / Sheets</h3>
+                <p>
+                    Выгрузка по месяцам: количества заказов, оборот, оплаты и задолженность — одним нажатием.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Админ-раздел и лицензия</h3>
+                <p>
+                    PIN-доступ, пробный период, продление по коду (M1 / M3 / M6 / M12). Все данные и лицензия хранятся локально.
+                </p>
+            </div>
+            <div class="card">
+                <h3>Поиск по базе</h3>
+                <p>
+                    Поиск по имени, телефону, номеру заказа, заметкам и суммам. Удобно находить старые работы.
+                </p>
+            </div>
+        </div>
     </section>
 
-    <footer class="footer">
-      <span>© MiniCRM Mobile, локальная CRM для мастеров и малого бизнеса.</span>
-      <span>Связь: <a href="https://t.me/UgraRemKomp" target="_blank" rel="noopener">@UgraRemKomp</a></span>
+    <!-- СКРИНЫ -->
+    <section style="margin-bottom:30px;">
+        <h2 class="section-title">Как выглядит приложение</h2>
+        <p class="section-sub">
+            Реальные скриншоты MiniCRM Mobile с телефона.
+            Замените имена файлов в блоке ниже на свои скрины.
+        </p>
+
+        <div class="screens">
+            <div class="screen-card">
+                <img src="img/screen-orders.jpg" alt="Список актуальных заказов">
+                <div class="screen-title">Список заказов с выделением долгов и статусов</div>
+            </div>
+            <div class="screen-card">
+                <img src="img/screen-card.jpg" alt="Карточка клиента">
+                <div class="screen-title">Карточка клиента: работы, материалы, оплаты, рейтинг</div>
+            </div>
+            <div class="screen-card">
+                <img src="img/screen-admin.jpg" alt="Админ-раздел и лицензия">
+                <div class="screen-title">Admin / Service: лицензия, Device ID, экспорт в CSV</div>
+            </div>
+            <div class="screen-card">
+                <img src="img/screen-pin.jpg" alt="PIN-код для Admin">
+                <div class="screen-title">Защита PIN-кодом для доступа в Admin-раздел</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- УСТАНОВКА -->
+    <section>
+        <h2 class="section-title">Как установить MiniCRM Mobile</h2>
+        <p class="section-sub">
+            Приложение распространяется через APK-файл. Установка занимает 1–2 минуты.
+        </p>
+
+        <div class="install-steps">
+            <div>
+                <ol>
+                    <li>Скачайте файл <strong>MiniCRMv2.apk</strong> по кнопке «Скачать APK» выше.</li>
+                    <li>Откройте файл через «Загрузки» или файловый менеджер на телефоне.</li>
+                    <li>При первом запуске Android может показать предупреждение Play Защиты — нажмите «Всё равно установить» (приложение без вирусов и рекламы).</li>
+                    <li>После установки откройте MiniCRM Mobile и добавьте первый заказ.</li>
+                    <li>В разделе <strong>Admin / Service</strong> вы увидите Device ID, срок лицензии и кнопки: «Купить лицензию», «Ввести лицензионный код» и экспорт в CSV.</li>
+                </ol>
+            </div>
+            <div class="note-box">
+                <strong>Важно:</strong><br>
+                • Приложение работает на Android 7.0 и выше (minSdk 24).<br>
+                • Все данные и лицензия хранятся только на вашем устройстве.<br>
+                • Никаких облаков, личных кабинетов и подписок. Бэкап можно сделать копированием папки с данными/скриншотами и экспортом отчётов в CSV.
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div>
+            © MiniCRM Mobile, УграРемКомп  
+            <br>Репозиторий: <a href="https://github.com/crmr6776-blip/Uchet_clientov" target="_blank">crmr6776-blip/Uchet_clientov</a>
+        </div>
+        <div>
+            Вопросы по лицензии и поддержке — через WhatsApp / Telegram, указанные внутри приложения в разделе Admin.
+        </div>
     </footer>
-  </div>
+
+</div>
 </body>
 </html>
