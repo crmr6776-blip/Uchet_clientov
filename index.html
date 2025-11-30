@@ -324,6 +324,48 @@
             justify-content: space-between;
             gap: 10px;
         }
+
+        /* Блок цен */
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+        @media (max-width: 960px) {
+            .pricing-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 640px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+        }
+
+        .pricing-card {
+            background: var(--card);
+            border-radius: var(--radius);
+            padding: 14px 14px 12px;
+            border: 1px solid rgba(0, 229, 255, 0.35);
+        }
+
+        .pricing-title {
+            margin: 0 0 4px;
+            font-size: 15px;
+        }
+
+        .pricing-price {
+            font-size: 18px;
+            font-weight: 700;
+            margin: 0 0 4px;
+        }
+
+        .pricing-monthly {
+            font-size: 12px;
+            color: var(--muted);
+            margin-bottom: 6px;
+        }
+
+        .pricing-note {
+            font-size: 11px;
+            color: var(--muted);
+        }
     </style>
 </head>
 <body>
@@ -365,8 +407,8 @@
                 <a class="btn btn-primary" href="files/MiniCRMv2.apk">
                     Скачать APK (Android)
                 </a>
-                <a class="btn btn-ghost" href="" target="_blank">
-                
+                <a class="btn btn-ghost" href="#pricing">
+                    Тарифы и лицензия
                 </a>
             </div>
             <div class="hero-note">
@@ -463,6 +505,56 @@
                 </p>
             </div>
         </div>
+    </section>
+
+    <!-- ЦЕНЫ -->
+    <section id="pricing" style="margin-bottom:30px;">
+        <h2 class="section-title">Стоимость и лицензия</h2>
+        <p class="section-sub">
+            Первые 7 дней MiniCRM Mobile работает бесплатно. Дальше вы просто выбираете срок лицензии:
+            чем больше период, тем ниже цена в месяц. Лицензия привязывается к одному устройству.
+        </p>
+
+        <div class="pricing-grid">
+            <div class="pricing-card">
+                <h3 class="pricing-title">1 месяц</h3>
+                <p class="pricing-price">990 ₽</p>
+                <p class="pricing-monthly">≈ 990 ₽ в месяц</p>
+                <p class="pricing-note">
+                    Подходит, чтобы спокойно протестировать приложение в работе и понять, как оно ложится в ваш процесс.
+                </p>
+            </div>
+            <div class="pricing-card">
+                <h3 class="pricing-title">3 месяца</h3>
+                <p class="pricing-price">2 300 ₽</p>
+                <p class="pricing-monthly">≈ 767 ₽ в месяц</p>
+                <p class="pricing-note">
+                    Для тех, кто планирует использовать MiniCRM Mobile как основной рабочий инструмент.
+                </p>
+            </div>
+            <div class="pricing-card">
+                <h3 class="pricing-title">6 месяцев</h3>
+                <p class="pricing-price">3 500 ₽</p>
+                <p class="pricing-monthly">≈ 583 ₽ в месяц</p>
+                <p class="pricing-note">
+                    Оптимальный вариант по цене/сроку. Полгода учёта клиентов, заказов и долгов под рукой.
+                </p>
+            </div>
+            <div class="pricing-card">
+                <h3 class="pricing-title">12 месяцев</h3>
+                <p class="pricing-price">5 000 ₽</p>
+                <p class="pricing-monthly">≈ 417 ₽ в месяц</p>
+                <p class="pricing-note">
+                    Максимальная выгода. Один раз оплатили — год спокойно работаете с полной функциональностью MiniCRM Mobile.
+                </p>
+            </div>
+        </div>
+
+        <p style="font-size:12px;color:var(--muted);margin-top:10px;">
+            После оплаты вы получаете лицензионный код вида <strong>M1 / M3 / M6 / M12</strong>.  
+            Код вводится в разделе <strong>Admin / Service</strong> внутри приложения.  
+            Все данные и лицензия хранятся локально на устройстве и не зависят от сторонних серверов.
+        </p>
     </section>
 
     <!-- СКРИНЫ -->
