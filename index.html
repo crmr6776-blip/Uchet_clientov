@@ -372,104 +372,7 @@
             width: 100%;
             font-size: 13px;
             padding-block: 8px;
-        }
-
-        /* Модалка оплаты */
-        .pay-modal {
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.7);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 50;
-            padding: 16px;
-            overflow-y: auto;
-        }
-
-        .pay-modal.show {
-            display: flex;
-        }
-
-        .pay-modal-inner {
-            background: var(--card);
-            border-radius: 18px;
-            padding: 16px 18px 14px;
-            max-width: 380px;
-            width: 100%;
-            border: 1px solid rgba(0, 229, 255, 0.45);
-            box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
-        }
-
-        @media (max-width: 480px) {
-            .pay-modal-inner {
-                max-width: 100%;
-                border-radius: 14px;
-            }
-        }
-
-        .pay-modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .pay-modal-title {
-            font-size: 16px;
-            font-weight: 650;
-        }
-
-        .pay-modal-close {
-            border: none;
-            background: transparent;
-            color: var(--muted);
-            font-size: 18px;
-            cursor: pointer;
-            padding: 0 4px;
-        }
-
-        .pay-modal-sum {
-            font-size: 20px;
-            font-weight: 700;
-            margin: 4px 0 8px;
-        }
-
-        .pay-modal-text {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 10px;
-        }
-
-        .pay-modal-actions {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            margin-top: 4px;
-        }
-
-        .pay-modal-comment {
-            font-size: 12px;
-            color: var(--muted);
-            padding: 6px 8px;
-            border-radius: 10px;
-            background: rgba(11, 15, 24, 0.96);
-            border: 1px dashed rgba(144, 164, 174, 0.7);
-        }
-
-        .btn-sber {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .btn-ghost-small {
-            border-radius: 999px;
-            border: 1px solid rgba(144, 164, 174, 0.7);
-            background: transparent;
-            color: var(--text);
-            font-size: 12px;
-            padding: 7px 12px;
-            cursor: pointer;
+            text-align: center;
         }
     </style>
 </head>
@@ -625,13 +528,16 @@
                 <p class="pricing-note">
                     Подходит, чтобы спокойно протестировать приложение в работе и понять, как оно ложится в ваш процесс.
                 </p>
-                <button
+                <a
                     class="btn btn-primary btn-pay"
-                    data-amount="990"
-                    data-code="M1"
-                    data-title="Лицензия на 1 месяц (M1)">
+                    href="https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072"
+                    target="_blank">
                     Оплатить через Сбер
-                </button>
+                </a>
+                <p class="pricing-note">
+                    В Сбербанк Онлайн введите сумму <strong>990 ₽</strong> и комментарий:<br>
+                    <strong>MiniCRM Mobile, лицензия M1</strong>
+                </p>
             </div>
             <div class="pricing-card">
                 <h3 class="pricing-title">3 месяца</h3>
@@ -640,13 +546,16 @@
                 <p class="pricing-note">
                     Для тех, кто планирует использовать MiniCRM Mobile как основной рабочий инструмент.
                 </p>
-                <button
+                <a
                     class="btn btn-primary btn-pay"
-                    data-amount="2300"
-                    data-code="M3"
-                    data-title="Лицензия на 3 месяца (M3)">
+                    href="https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072"
+                    target="_blank">
                     Оплатить через Сбер
-                </button>
+                </a>
+                <p class="pricing-note">
+                    В Сбербанк Онлайн введите сумму <strong>2 300 ₽</strong> и комментарий:<br>
+                    <strong>MiniCRM Mobile, лицензия M3</strong>
+                </p>
             </div>
             <div class="pricing-card">
                 <h3 class="pricing-title">6 месяцев</h3>
@@ -655,13 +564,16 @@
                 <p class="pricing-note">
                     Оптимальный вариант по цене/сроку. Полгода учёта клиентов, заказов и долгов под рукой.
                 </p>
-                <button
+                <a
                     class="btn btn-primary btn-pay"
-                    data-amount="3500"
-                    data-code="M6"
-                    data-title="Лицензия на 6 месяцев (M6)">
+                    href="https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072"
+                    target="_blank">
                     Оплатить через Сбер
-                </button>
+                </a>
+                <p class="pricing-note">
+                    В Сбербанк Онлайн введите сумму <strong>3 500 ₽</strong> и комментарий:<br>
+                    <strong>MiniCRM Mobile, лицензия M6</strong>
+                </p>
             </div>
             <div class="pricing-card">
                 <h3 class="pricing-title">12 месяцев</h3>
@@ -670,13 +582,16 @@
                 <p class="pricing-note">
                     Максимальная выгода. Один раз оплатили — год спокойно работаете с полной функциональностью MiniCRM Mobile.
                 </p>
-                <button
+                <a
                     class="btn btn-primary btn-pay"
-                    data-amount="5000"
-                    data-code="M12"
-                    data-title="Лицензия на 12 месяцев (M12)">
+                    href="https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072"
+                    target="_blank">
                     Оплатить через Сбер
-                </button>
+                </a>
+                <p class="pricing-note">
+                    В Сбербанк Онлайн введите сумму <strong>5 000 ₽</strong> и комментарий:<br>
+                    <strong>MiniCRM Mobile, лицензия M12</strong>
+                </p>
             </div>
         </div>
 
@@ -752,103 +667,6 @@
     </footer>
 
 </div>
-
-<!-- МОДАЛКА ОПЛАТЫ -->
-<div class="pay-modal" id="payModal">
-    <div class="pay-modal-inner">
-        <div class="pay-modal-header">
-            <div class="pay-modal-title" id="payTitle">Оплата лицензии</div>
-            <button class="pay-modal-close" id="payClose" aria-label="Закрыть">×</button>
-        </div>
-        <div class="pay-modal-sum" id="paySum">Сумма: 0 ₽</div>
-        <div class="pay-modal-text">
-            Оплата проходит как обычный перевод по номеру телефона через Сбербанк Онлайн.
-            В следующем окне просто введите указанную сумму и комментарий к платежу.
-        </div>
-        <div class="pay-modal-actions">
-            <a
-                id="paySberLink"
-                class="btn btn-primary btn-sber"
-                href="https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072"
-                target="_blank">
-                Открыть Сбербанк Онлайн
-            </a>
-            <div class="pay-modal-comment" id="payCommentBox">
-                Рекомендация по комментарию к платежу:<br>
-                <strong>MiniCRM Mobile, лицензия M1</strong>
-            </div>
-            <button class="btn-ghost-small" id="payCopyBtn" type="button">
-                Скопировать комментарий
-            </button>
-        </div>
-    </div>
-</div>
-
-<script>
-    // Настройка модалки оплаты
-    (function() {
-        const modal = document.getElementById('payModal');
-        const titleEl = document.getElementById('payTitle');
-        const sumEl = document.getElementById('paySum');
-        const commentBox = document.getElementById('payCommentBox');
-        const sberLink = document.getElementById('paySberLink');
-        const closeBtn = document.getElementById('payClose');
-        const copyBtn = document.getElementById('payCopyBtn');
-
-        const baseSberUrl = 'https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072';
-
-        function openModal(tariffTitle, amount, code) {
-            titleEl.textContent = tariffTitle;
-            sumEl.textContent = 'Сумма: ' + amount + ' ₽';
-            commentBox.innerHTML = 'Рекомендация по комментарию к платежу:<br>' +
-                '<strong>MiniCRM Mobile, лицензия ' + code + '</strong>';
-
-            sberLink.href = baseSberUrl;
-
-            modal.classList.add('show');
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeModal() {
-            modal.classList.remove('show');
-            document.body.style.overflow = '';
-        }
-
-        document.querySelectorAll('.btn-pay').forEach(function(btn) {
-            btn.addEventListener('click', function() {
-                const amount = this.getAttribute('data-amount');
-                const code = this.getAttribute('data-code');
-                const title = this.getAttribute('data-title') || 'Оплата лицензии';
-                openModal(title, amount, code);
-            });
-        });
-
-        closeBtn.addEventListener('click', closeModal);
-
-        // Закрытие по Esc
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') {
-                closeModal();
-            }
-        });
-
-        // Копирование комментария
-        copyBtn.addEventListener('click', function() {
-            const match = titleEl.textContent.match(/M\d+/);
-            const code = match ? match[0] : '';
-            const text = 'MiniCRM Mobile, лицензия ' + code;
-
-            const tmp = document.createElement('textarea');
-            tmp.value = text;
-            document.body.appendChild(tmp);
-            tmp.select();
-            try {
-                document.execCommand('copy');
-            } catch (e) {}
-            document.body.removeChild(tmp);
-        });
-    })();
-</script>
 
 </body>
 </html>
