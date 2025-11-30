@@ -383,6 +383,8 @@
             align-items: center;
             justify-content: center;
             z-index: 50;
+            padding: 16px;
+            overflow-y: auto;
         }
 
         .pay-modal.show {
@@ -397,6 +399,13 @@
             width: 100%;
             border: 1px solid rgba(0, 229, 255, 0.45);
             box-shadow: 0 18px 50px rgba(0, 0, 0, 0.9);
+        }
+
+        @media (max-width: 480px) {
+            .pay-modal-inner {
+                max-width: 100%;
+                border-radius: 14px;
+            }
         }
 
         .pay-modal-header {
@@ -462,7 +471,6 @@
             padding: 7px 12px;
             cursor: pointer;
         }
-
     </style>
 </head>
 <body>
@@ -500,7 +508,6 @@
             </div>
 
             <div class="hero-actions">
-                <!-- ССЫЛКА НА APK: файл нужно положить в /files/MiniCRMv2.apk -->
                 <a class="btn btn-primary" href="files/MiniCRMv2.apk">
                     Скачать APK (Android)
                 </a>
@@ -513,10 +520,8 @@
             </div>
         </div>
 
-        <!-- Превью телефона: сюда подставь скрин -->
         <div class="hero-phone">
             <div class="phone-inner">
-                <!-- ЗАМЕНИ имя файла на реальный скрин -->
                 <img src="img/screen-orders.jpg" alt="Список заказов в MiniCRM Mobile">
             </div>
         </div>
@@ -676,8 +681,8 @@
         </div>
 
         <p style="font-size:12px;color:var(--muted);margin-top:10px;">
-            После оплаты вы получаете лицензионный код вида <strong>M1 / M3 / M6 / M12</strong>.  
-            Код вводится в разделе <strong>Admin / Service</strong> внутри приложения.  
+            После оплаты вы получаете лицензионный код вида <strong>M1 / M3 / M6 / M12</strong>.<br>
+            Код вводится в разделе <strong>Admin / Service</strong> внутри приложения.<br>
             Все данные и лицензия хранятся локально на устройстве и не зависят от сторонних серверов.
         </p>
     </section>
@@ -738,8 +743,8 @@
 
     <footer>
         <div>
-            © MiniCRM Mobile, УграРемКомп  
-            <br>Репозиторий: <a href="https://github.com/crmr6776-blip/Uchet_clientov" target="_blank">crmr6776-blip/Uchet_clientov</a>
+            © MiniCRM Mobile, УграРемКомп<br>
+            Репозиторий: <a href="https://github.com/crmr6776-blip/Uchet_clientov" target="_blank">crmr6776-blip/Uchet_clientov</a>
         </div>
         <div>
             Вопросы по лицензии и поддержке — через WhatsApp / Telegram, указанные внутри приложения в разделе Admin.
@@ -798,14 +803,15 @@
             commentBox.innerHTML = 'Рекомендация по комментарию к платежу:<br>' +
                 '<strong>MiniCRM Mobile, лицензия ' + code + '</strong>';
 
-            // Оставляем базовую ссылку: сумму пользователь вводит сам
             sberLink.href = baseSberUrl;
 
             modal.classList.add('show');
+            document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
             modal.classList.remove('show');
+            document.body.style.overflow = '';
         }
 
         document.querySelectorAll('.btn-pay').forEach(function(btn) {
@@ -818,33 +824,31 @@
         });
 
         closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
+
+        // Закрытие по Esc
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
                 closeModal();
             }
         });
 
         // Копирование комментария
         copyBtn.addEventListener('click', function() {
+            const match = titleEl.textContent.match(/M\d+/);
+            const code = match ? match[0] : '';
+            const text = 'MiniCRM Mobile, лицензия ' + code;
+
             const tmp = document.createElement('textarea');
-            tmp.value = 'MiniCRM Mobile, лицензия ' +
-                (titleEl.textContent.match(/M\d+/) || [''])[0];
+            tmp.value = text;
             document.body.appendChild(tmp);
             tmp.select();
             try {
                 document.execCommand('copy');
-            } catch (e) {
-                // если не получилось — просто молча игнорируем
-            }
+            } catch (e) {}
             document.body.removeChild(tmp);
         });
     })();
 </script>
 
-</body>
-</html>
-
-
-</div>
 </body>
 </html>
