@@ -284,6 +284,25 @@
             color: var(--muted);
         }
 
+        /* Подсветка Device ID на скрине Admin */
+        .screen-card.device {
+            position: relative;
+        }
+
+        .device-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #00e5ff;
+            color: #000;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 7px;
+            border-radius: 999px;
+            box-shadow: 0 0 10px rgba(0, 229, 255, 0.6);
+            letter-spacing: 0.03em;
+        }
+
         .install-steps {
             display: grid;
             grid-template-columns: minmax(0, 3.5fr) minmax(0, 2fr);
@@ -411,6 +430,7 @@
             </div>
 
             <div class="hero-actions">
+                <!-- ССЫЛКА НА APK: файл нужно положить в /files/MiniCRMv2.apk -->
                 <a class="btn btn-primary" href="files/MiniCRMv2.apk">
                     Скачать APK (Android)
                 </a>
@@ -423,6 +443,7 @@
             </div>
         </div>
 
+        <!-- Превью телефона -->
         <div class="hero-phone">
             <div class="phone-inner">
                 <img src="img/screen-orders.jpg" alt="Список заказов в MiniCRM Mobile">
@@ -531,14 +552,15 @@
                 <a
                     class="btn btn-primary btn-pay"
                     href="https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072"
-                    target="_blank">
-                    Оплатить через Сбер
+                    target="_blank" rel="noopener">
+                    Оплатить через Сбербанк Онлайн
                 </a>
-                <p class="pricing-note">
-                    В Сбербанк Онлайн введите сумму <strong>990 ₽</strong> и комментарий:<br>
-                    <strong>MiniCRM Mobile, лицензия M1</strong>
+                <p class="pricing-note" style="margin-top:6px;">
+                    В Сбербанк Онлайн укажите сумму <strong>990 ₽</strong> и комментарий:
+                    <strong>MiniCRM Mobile, лицензия M1</strong>.
                 </p>
             </div>
+
             <div class="pricing-card">
                 <h3 class="pricing-title">3 месяца</h3>
                 <p class="pricing-price">2 300 ₽</p>
@@ -549,14 +571,15 @@
                 <a
                     class="btn btn-primary btn-pay"
                     href="https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072"
-                    target="_blank">
-                    Оплатить через Сбер
+                    target="_blank" rel="noopener">
+                    Оплатить через Сбербанк Онлайн
                 </a>
-                <p class="pricing-note">
-                    В Сбербанк Онлайн введите сумму <strong>2 300 ₽</strong> и комментарий:<br>
-                    <strong>MiniCRM Mobile, лицензия M3</strong>
+                <p class="pricing-note" style="margin-top:6px;">
+                    В Сбербанк Онлайн укажите сумму <strong>2300 ₽</strong> и комментарий:
+                    <strong>MiniCRM Mobile, лицензия M3</strong>.
                 </p>
             </div>
+
             <div class="pricing-card">
                 <h3 class="pricing-title">6 месяцев</h3>
                 <p class="pricing-price">3 500 ₽</p>
@@ -567,14 +590,15 @@
                 <a
                     class="btn btn-primary btn-pay"
                     href="https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072"
-                    target="_blank">
-                    Оплатить через Сбер
+                    target="_blank" rel="noopener">
+                    Оплатить через Сбербанк Онлайн
                 </a>
-                <p class="pricing-note">
-                    В Сбербанк Онлайн введите сумму <strong>3 500 ₽</strong> и комментарий:<br>
-                    <strong>MiniCRM Mobile, лицензия M6</strong>
+                <p class="pricing-note" style="margin-top:6px;">
+                    В Сбербанк Онлайн укажите сумму <strong>3500 ₽</strong> и комментарий:
+                    <strong>MiniCRM Mobile, лицензия M6</strong>.
                 </p>
             </div>
+
             <div class="pricing-card">
                 <h3 class="pricing-title">12 месяцев</h3>
                 <p class="pricing-price">5 000 ₽</p>
@@ -585,19 +609,19 @@
                 <a
                     class="btn btn-primary btn-pay"
                     href="https://www.sberbank.com/sms/pbpn?requisiteNumber=79107116072"
-                    target="_blank">
-                    Оплатить через Сбер
+                    target="_blank" rel="noopener">
+                    Оплатить через Сбербанк Онлайн
                 </a>
-                <p class="pricing-note">
-                    В Сбербанк Онлайн введите сумму <strong>5 000 ₽</strong> и комментарий:<br>
-                    <strong>MiniCRM Mobile, лицензия M12</strong>
+                <p class="pricing-note" style="margin-top:6px;">
+                    В Сбербанк Онлайн укажите сумму <strong>5000 ₽</strong> и комментарий:
+                    <strong>MiniCRM Mobile, лицензия M12</strong>.
                 </p>
             </div>
         </div>
 
         <p style="font-size:12px;color:var(--muted);margin-top:10px;">
-            После оплаты вы получаете лицензионный код вида <strong>M1 / M3 / M6 / M12</strong>.<br>
-            Код вводится в разделе <strong>Admin / Service</strong> внутри приложения.<br>
+            После оплаты вы получаете лицензионный код вида <strong>M1 / M3 / M6 / M12</strong>.  
+            Код вводится в разделе <strong>Admin / Service</strong> внутри приложения.  
             Все данные и лицензия хранятся локально на устройстве и не зависят от сторонних серверов.
         </p>
     </section>
@@ -619,7 +643,8 @@
                 <img src="img/screen-card.jpg" alt="Карточка клиента">
                 <div class="screen-title">Карточка клиента: работы, материалы, оплаты, рейтинг</div>
             </div>
-            <div class="screen-card">
+            <div class="screen-card device">
+                <div class="device-badge">Device ID</div>
                 <img src="img/screen-admin.jpg" alt="Админ-раздел и лицензия">
                 <div class="screen-title">Admin / Service: лицензия, Device ID, экспорт в CSV</div>
             </div>
@@ -658,8 +683,8 @@
 
     <footer>
         <div>
-            © MiniCRM Mobile, УграРемКомп<br>
-            Репозиторий: <a href="https://github.com/crmr6776-blip/Uchet_clientov" target="_blank">crmr6776-blip/Uchet_clientov</a>
+            © MiniCRM Mobile, УграРемКомп  
+            <br>Репозиторий: <a href="https://github.com/crmr6776-blip/Uchet_clientov" target="_blank">crmr6776-blip/Uchet_clientov</a>
         </div>
         <div>
             Вопросы по лицензии и поддержке — через WhatsApp / Telegram, указанные внутри приложения в разделе Admin.
@@ -667,6 +692,5 @@
     </footer>
 
 </div>
-
 </body>
 </html>
